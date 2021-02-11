@@ -94,9 +94,12 @@ class Handler extends ExceptionHandler
             }
         }
 
+        if (config(app.debug)){
+            return parent::render($request, $exception);
+        }
+
         return $this->errorResponse('Unexpected Exception,try again later',500);
 
-        return parent::render($request, $exception);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
