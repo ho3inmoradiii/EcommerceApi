@@ -2,13 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable , SoftDeletes;
 
     const verified_user = '1';
     const unverified_user = '0';
@@ -42,6 +43,8 @@ class User extends Authenticatable
         'remember_token',
         'verification_token',
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be cast to native types.

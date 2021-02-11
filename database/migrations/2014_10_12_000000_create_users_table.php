@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('admin')->default(\App\User::regular_user);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
